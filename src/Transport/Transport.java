@@ -1,3 +1,5 @@
+package Transport;
+
 public abstract class Transport implements Competetable{
     private String brand;
     private String model;
@@ -61,5 +63,5 @@ public abstract class Transport implements Competetable{
     public String toString() {
         return getBrand() + " " + getModel();
     }
-    //public abstract
+    public abstract void getType();
 }
