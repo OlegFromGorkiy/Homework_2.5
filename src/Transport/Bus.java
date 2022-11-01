@@ -28,7 +28,17 @@ public class Bus extends Transport {
         System.out.println(this.toString() + " showed the max speed jn this lap");
     }
 
-    private enum BusCapacity{
+    public BusCapacity getBusCapacity() {
+        return busCapacity;
+    }
+
+    @Override
+    public void getType() {
+        if (getBusCapacity() == null) System.out.println("Класс автобуса неизвестен");
+        else System.out.println("Класс автобуса - " + getBusCapacity().name());
+    }
+
+    private enum BusCapacity {
         EXTRA_SMALL(10),
         SMALL(25),
         MEDIUM(60),

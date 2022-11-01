@@ -63,5 +63,5 @@ public abstract class Transport implements Competetable{
     public String toString() {
         return getBrand() + " " + getModel();
     }
-    //public abstract
+    public abstract void getType();
 }

@@ -10,7 +10,11 @@ public class Car extends Transport {
 
     public Car(String brand, String model, double engineVolume, String bodyType) {
         super(brand, model, engineVolume, DriverLicense.B);
-        this.bodyType = BodyType.getValue(bodyType) == null ? BodyType.SEDAN : BodyType.getValue(bodyType);
+        this.bodyType = BodyType.convertBodyType(bodyType);// == null ? BodyType.SEDAN : BodyType.convertBodyType(bodyType);
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
     }
 
     @Override
@@ -26,6 +30,12 @@ public class Car extends Transport {
     @Override
     public void maxSpeed() {
         System.out.println(this.toString() + " showed the max speed jn this lap");
+    }
+
+    @Override
+    public void getType() {
+        if (getBodyType() == null) System.out.println("Корпус авто неизвестен");
+        else System.out.println("корпус авто - "+getBodyType().getName());
     }
 
     private enum BodyType {
@@ -49,7 +59,7 @@ public class Car extends Transport {
             return NAME;
         }
 
-        public static BodyType getValue(String name) {
+        public static BodyType convertBodyType(String name) {
             for (int i = 0; i < BodyType.values().length; i++) {
                 if (BodyType.values()[i].getName().equals(name)) {
                     return BodyType.values()[i];

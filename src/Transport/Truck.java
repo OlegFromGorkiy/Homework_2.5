@@ -19,7 +19,6 @@ public class Truck extends Transport {
         else massCategory = MassCategory.N3;
     }
 
-    @Override
     public void pitStop() {
         System.out.println(this.toString() + " pulled into a pit stop");
     }
@@ -32,6 +31,16 @@ public class Truck extends Transport {
     @Override
     public void maxSpeed() {
         System.out.println(this.toString() + " showed the max speed jn this lap");
+    }
+
+    public MassCategory getMassCategory() {
+        return massCategory;
+    }
+
+    @Override
+    public void getType() {
+        if (getMassCategory() == null) System.out.println("Класс грузоподъемности неизвестен");
+        else System.out.println("Класс грузоподъемности "+getMassCategory().name());
     }
 
     private enum MassCategory {
