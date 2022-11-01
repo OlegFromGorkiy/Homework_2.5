@@ -1,8 +1,22 @@
+package Transport;
+
 public class Truck extends Transport {
 
+    MassCategory massCategory;
     DriverLicense driverLicense = DriverLicense.C;
-    public Truck(String brand, String model, double engineVolume) {
+
+    public Truck(String brand, String model, double engineVolume, int maxWeightInKilograms) {
         super(brand, model, engineVolume, DriverLicense.C);
+        if (maxWeightInKilograms <= MassCategory.N1.MAX_MASS) massCategory = MassCategory.N1;
+        else if (maxWeightInKilograms <= MassCategory.N2.MAX_MASS) massCategory = MassCategory.N2;
+        else massCategory = MassCategory.N3;
+    }
+    public Truck(String brand, String model, double engineVolume, double maxWeightInTons) {
+        super(brand, model, engineVolume, DriverLicense.C);
+        int maxWeightInKilograms = (int) maxWeightInTons*1000;
+        if (maxWeightInKilograms <= MassCategory.N1.MAX_MASS) massCategory = MassCategory.N1;
+        else if (maxWeightInKilograms <= MassCategory.N2.MAX_MASS) massCategory = MassCategory.N2;
+        else massCategory = MassCategory.N3;
     }
 
     @Override
@@ -18,5 +32,18 @@ public class Truck extends Transport {
     @Override
     public void maxSpeed() {
         System.out.println(this.toString() + " showed the max speed jn this lap");
+    }
+
+    private enum MassCategory {
+        N1(3500),
+        N2(12000),
+        N3(Integer.MAX_VALUE),
+        ;
+
+        private final int MAX_MASS;
+
+        MassCategory(int i) {
+            this.MAX_MASS = i;
+        }
     }
 }

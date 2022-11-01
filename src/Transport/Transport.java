@@ -1,3 +1,5 @@
+package Transport;
+
 public abstract class Transport implements Competetable{
     private String brand;
     private String model;
